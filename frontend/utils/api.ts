@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { MovieInsightResponse, ApiError } from '../types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+const API_URL = '/api';
 
 export async function fetchMovieInsight(imdbId: string): Promise<MovieInsightResponse> {
   try {
+    console.log('Fetching movie insight for:', imdbId);
+    console.log('API URL:', `${API_URL}/movie-insight`);
+    
     const response = await axios.post<MovieInsightResponse>(
       `${API_URL}/movie-insight`,
       { imdbId },
@@ -15,8 +18,14 @@ export async function fetchMovieInsight(imdbId: string): Promise<MovieInsightRes
         timeout: 15000
       }
     );
+    
+    console.log('Response received:', response.status);
     return response.data;
   } catch (error: any) {
+    console.error('API Error:', error);
+    console.error('Error response:', error.response?.data);
+    console.error('Error status:', error.response?.status);
+    
     if (error.response?.data) {
       const apiError: ApiError = error.response.data;
       throw new Error(apiError.error || 'Failed to fetch movie insights');
