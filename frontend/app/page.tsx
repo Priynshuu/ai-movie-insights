@@ -17,30 +17,28 @@ export default function Home() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header animation
+      // Header animation - no delay
       gsap.from(headerRef.current, {
         opacity: 0,
         y: -50,
-        duration: 1,
+        duration: 0.6,
         ease: 'power3.out'
       });
 
-      // Search input animation
+      // Search input animation - no delay
       gsap.from(searchRef.current, {
         opacity: 0,
         scale: 0.9,
-        duration: 0.8,
-        ease: 'back.out(1.7)',
-        delay: 0.3
+        duration: 0.6,
+        ease: 'back.out(1.7)'
       });
 
-      // Footer animation
+      // Footer animation - no delay
       gsap.from(footerRef.current, {
         opacity: 0,
         y: 20,
-        duration: 0.8,
-        ease: 'power2.out',
-        delay: 0.6
+        duration: 0.6,
+        ease: 'power2.out'
       });
     });
 

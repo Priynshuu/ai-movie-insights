@@ -16,68 +16,31 @@ export default function AIInsights({ insights, error }: AIInsightsProps) {
     if (!containerRef.current || !insights) return;
 
     const ctx = gsap.context(() => {
-      // Container entrance
+      // Container entrance - no delay
       gsap.from(containerRef.current, {
         opacity: 0,
-        y: 60,
-        duration: 0.8,
+        y: 30,
+        duration: 0.5,
         ease: 'power3.out'
       });
 
-      // Header with badge animation
+      // Header with badge animation - no delay
       gsap.from(headerRef.current, {
         opacity: 0,
-        scale: 0.9,
-        duration: 0.6,
-        ease: 'back.out(1.7)',
-        delay: 0.2
+        scale: 0.95,
+        duration: 0.4,
+        ease: 'back.out(1.7)'
       });
 
-      // Summary fade and slide
+      // Summary fade and slide - no delay
       gsap.from(summaryRef.current, {
         opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power2.out',
-        delay: 0.4
+        y: 20,
+        duration: 0.5,
+        ease: 'power2.out'
       });
 
       // DISABLED ANIMATIONS FOR THEME ITEMS - they were causing visibility issues
-      // Positive themes with stagger
-      // if (positiveRef.current) {
-      //   gsap.from(positiveRef.current.children, {
-      //     opacity: 0,
-      //     x: -40,
-      //     duration: 0.5,
-      //     stagger: 0.08,
-      //     ease: 'power2.out',
-      //     delay: 0.6
-      //   });
-      // }
-
-      // Neutral themes with stagger
-      // if (neutralRef.current) {
-      //   gsap.from(neutralRef.current.children, {
-      //     opacity: 0,
-      //     scale: 0.8,
-      //     duration: 0.5,
-      //     stagger: 0.08,
-      //     ease: 'back.out(1.7)',
-      //     delay: 0.9
-      //   });
-      // }
-
-      // Negative themes with stagger
-      // if (negativeRef.current) {
-      //   gsap.from(negativeRef.current.children, {
-      //     opacity: 0,
-      //     x: 40,
-      //     duration: 0.5,
-      //     stagger: 0.08,
-      //     ease: 'power2.out',
-      //     delay: 1.2
-      //   });
-      // }
     }, containerRef);
 
     return () => ctx.revert();
